@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Estadísticas</title>
+
+<style>
+
+body { font-family: Arial; }
+
+.box{
+border:1px solid #ccc;
+padding:15px;
+width:300px;
+background:#f9f9f9;
+}
+
+.ok{ color:green; }
+.warn{ color:orange; }
+.bad{ color:red; }
+
+</style>
+
+</head>
+
+<body>
+
+<h1>📊 Estadísticas del día {{ fecha }}</h1>
+
+<form method="GET">
+
+<label>Seleccionar fecha:</label>
+
+<input type="date" name="fecha" value="{{ fecha }}">
+
+<button type="submit">Ver</button>
+
+</form>
+
+<br>
+
+<div class="box">
+
+<p>Total turnos: <strong>{{ stats.total }}</strong></p>
+
+<p class="warn">Nuevos: {{ stats.nuevo }}</p>
+
+<p class="warn">Confirmados: {{ stats.confirmado }}</p>
+
+<p class="ok">Atendidos: {{ stats.atendido }}</p>
+
+<p class="bad">Ausentes: {{ stats.ausente }}</p>
+
+{% if stats.total > 0 %}
+
+<hr>
+
+<p>
+Asistencia:
+<strong>{{ (stats.atendido * 100 // stats.total) }}%</strong>
+</p>
+
+{% endif %}
+
+</div>
+
+<br>
+
+<a href="/agenda">← Volver a agenda</a>
+
+</body>
+</html>

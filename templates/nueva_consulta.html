@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Nueva consulta</title>
+</head>
+<body>
+    <h1>Enviar consulta</h1>
+
+    <form method="POST">
+
+    <input type="text" name="nombre" placeholder="Nombre" required>
+    <br><br>
+
+    <input type="tel" name="telefono" required placeholder="Ej: 2302554321">
+    <br><br>
+
+    <select name="servicio" required>
+        <option value="">Seleccione un servicio</option>
+        <option value="corte">Corte</option>
+        <option value="barba">Barba</option>
+        <option value="corte y barba">Corte y barba</option>
+    </select>
+    <br><br>
+
+    <textarea name="mensaje" placeholder="Consulta" required></textarea>
+    <br><br>
+
+    <button type="submit">Enviar consulta</button>
+
+</form>
+</body>
+</html>

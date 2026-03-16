@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+
+<meta charset="UTF-8">
+<title>Agenda</title>
+
+<style>
+
+body{
+    font-family: Arial;
+    margin:40px;
+}
+
+.fila{
+    border:1px solid #ccc;
+    padding:10px;
+    margin-bottom:8px;
+    border-radius:6px;
+}
+
+.libre{
+    background:#f8f9fa;
+}
+
+.ocupado{
+    background:#d4edda;
+}
+
+.hora{
+    font-size:18px;
+    font-weight:bold;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<h1>Agenda del día</h1>
+
+<form method="GET" action="/agenda">
+
+<label>Seleccionar fecha:</label>
+
+<input type="date" name="fecha" value="{{fecha}}">
+
+<button type="submit">Ver</button>
+
+</form>
+
+<br>
+
+<a href="/consultas">
+<button>Ver consultas</button>
+</a>
+
+<br><br>
+
+{% for hora in horarios %}
+
+<div class="fila {% if agenda[hora] %}ocupado{% else %}libre{% endif %}">
+
+<div class="hora">{{hora}}</div>
+
+{% if agenda[hora] %}
+
+<strong>{{agenda[hora][1]}}</strong><br>
+Tel: {{agenda[hora][2]}}<br>
+Servicio: {{agenda[hora][3]}}<br>
+Estado: {{agenda[hora][7]}}
+
+{% else %}
+
+Libre
+
+{% endif %}
+
+</div>
+
+{% endfor %}
+
+</body>
+</html>

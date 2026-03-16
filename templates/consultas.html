@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+
+<meta charset="UTF-8">
+
+<title>Consultas - Barbería</title>
+
+<style>
+
+body{
+    font-family: Arial, sans-serif;
+}
+
+.consulta{
+    border:1px solid #ccc;
+    padding:12px;
+    margin-bottom:10px;
+    border-radius:6px;
+}
+
+button{
+    margin-top:5px;
+    padding:6px 10px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<h1>Consultas recibidas</h1>
+
+<br>
+
+<a href="/consulta">
+<button>➕ Nueva consulta</button>
+</a>
+
+<br><br>
+
+{% if consultas %}
+
+{% for consulta in consultas %}
+
+<div class="consulta">
+
+<strong>{{ consulta[1] }}</strong><br>
+
+Tel: {{ consulta[2] }}<br>
+
+Servicio: {{ consulta[3] }}<br>
+
+Mensaje: {{ consulta[4] }}<br>
+
+Fecha: {{ consulta[5] }}<br>
+
+<br>
+
+<a href="/asignar_turno/{{consulta[0]}}">
+<button>📅 Asignar turno</button>
+</a>
+
+<a target="_blank"
+href="https://wa.me/549{{consulta[2]}}?text=Hola%20{{consulta[1]}},%20recibimos%20tu%20consulta.%20Podemos%20coordinar%20tu%20turno." target="_blank">
+WhatsApp
+</a>
+
+<button style="background:#25D366;color:white;">
+WhatsApp
+</button>
+
+</a>
+
+</div>
+
+{% endfor %}
+
+{% else %}
+
+<p>No hay consultas registradas.</p>
+
+{% endif %}
+
+<br><br>
+
+<a href="/agenda">
+<button>📋 Ver agenda del día</button>
+</a>
+
+</body>
+</html>

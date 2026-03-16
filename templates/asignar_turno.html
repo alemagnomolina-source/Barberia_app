@@ -1,0 +1,60 @@
+<h2>Asignar turno</h2>
+
+<form method="POST" action="/guardar_turno/{{ consulta_id }}">
+
+<label>Fecha</label><br>
+<input 
+type="date" 
+name="fecha_turno" 
+value="{{fecha}}" 
+required
+onchange="cambiarFecha(this.value)"
+>
+<br><br>
+
+<label>Hora</label><br>
+
+<select name="hora_turno" required>
+
+<option value="" disabled selected>Seleccionar horario</option>
+
+{% for h in horarios %}
+
+    {% if h in horas_ocupadas %}
+
+        <option value="{{ h }}" disabled>
+            {{ h }} (ocupado)
+        </option>
+
+    {% else %}
+
+        <option value="{{ h }}">
+            {{ h }}
+        </option>
+
+    {% endif %}
+
+{% endfor %}
+
+</select>
+
+<br><br>
+
+<button type="submit">Guardar turno</button>
+
+</form>
+
+<script>
+
+function cambiarFecha(fecha){
+
+    const consulta_id = "{{ consulta_id }}"
+
+    window.location.href = "/asignar_turno/" + consulta_id + "?fecha=" + fecha
+
+}
+
+</script>
+
+</body>
+</html>

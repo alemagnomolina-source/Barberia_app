@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<title>Dashboard Barbería</title>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+</head>
+
+<body>
+
+<h1>📊 Dashboard Barbería</h1>
+
+<h2>💰 Ingresos totales: ${{total}}</h2>
+
+<h2>📅 Ingresos de hoy: ${{ingresos_hoy}}</h2>
+
+<h2>📅 Ingresos últimos 7 días: ${{ingresos_semana}}</h2>
+
+<h2>🔥 Servicio más vendido: {{servicio_mas_vendido}}</h2>
+
+<h3>Servicios realizados</h3>
+
+<ul>
+
+{% for servicio, cantidad in servicios.items() %}
+
+<li>{{servicio}} : {{cantidad}}</li>
+
+{% endfor %}
+
+</ul>
+
+<h3>📊 Gráfico de servicios</h3>
+
+<canvas id="graficoServicios" width="400" height="200"></canvas>
+
+<script>
+
+const servicios = {{ servicios | tojson }};
+
+const labels = Object.keys(servicios);
+const data = Object.values(servicios);
+
+const ctx = document.getElementById('graficoServicios');
+
+new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: labels,
+        datasets: [{
+            label: 'Servicios realizados',
+            data: data,
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            y: {
+                beginAtZero: true
+            }
+        }
+    }
+});
+
+</script>
+
+</body>
+</html>

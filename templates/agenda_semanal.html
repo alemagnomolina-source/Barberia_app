@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Agenda semanal</title>
+
+<style>
+
+body{
+    font-family: Arial;
+    margin:40px;
+}
+
+.turno{
+    border:1px solid #ccc;
+    padding:10px;
+    margin-bottom:8px;
+    border-radius:6px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<h1>📅 Agenda semanal</h1>
+
+{% if turnos %}
+
+{% for t in turnos %}
+
+<div class="turno">
+
+<strong>{{ t[1] }}</strong><br>
+
+Tel: {{ t[2] }}<br>
+
+Servicio: {{ t[3] }}<br>
+
+Fecha: {{ t[6] }}<br>
+
+Hora: {{ t[7] }}
+
+</div>
+
+{% endfor %}
+
+{% else %}
+
+<p>No hay turnos en la semana.</p>
+
+{% endif %}
+
+<br>
+
+<a href="/agenda">← Volver a agenda</a>
+
+</body>
+</html>

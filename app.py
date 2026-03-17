@@ -33,6 +33,10 @@ USUARIO = "admin"
 PASSWORD = "1234"
 
 
+@app.route("/")
+def inicio():
+    return redirect(url_for("crear_consulta"))
+
 @app.route("/consultas")
 def ver_consultas():
     
@@ -377,5 +381,8 @@ def logout():
 
     return redirect(url_for("login"))
     
+import os
+
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5001, debug=True)
+    port = int(os.environ.get("PORT", 10000))
+    app.run(host="0.0.0.0", port=port)

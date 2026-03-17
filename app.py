@@ -279,6 +279,9 @@ def logout():
     session.clear()
     return redirect(url_for("login"))
 
+@app.route("/")
+def inicio():
+    return redirect("/consulta")
 
 # -----------------------
 # RUN

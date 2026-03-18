@@ -1,42 +1,29 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="es">
 <head>
-
+<meta charset="UTF-8">
 <title>Agenda semanal</title>
-
-<link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.11/index.global.min.css" rel="stylesheet">
-
-<script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.11/index.global.min.js"></script>
-
 </head>
 
 <body>
 
+<div style="background:#0d0d0d;padding:15px;display:flex;gap:20px;align-items:center;">
+
+    <span style="color:#00ff88;font-weight:bold;font-size:18px;">
+        💈 BarberApp
+    </span>
+
+    <a href="/consultas" style="color:white;text-decoration:none;">Consultas</a>
+    <a href="/agenda" style="color:white;text-decoration:none;">Agenda</a>
+    <a href="/agenda_semana" style="color:white;text-decoration:none;">Semana</a>
+    <a href="/estadisticas" style="color:white;text-decoration:none;">Estadísticas</a>
+    <a href="/dashboard" style="color:white;text-decoration:none;">Dashboard</a>
+
+</div>
+
 <h1>📅 Agenda semanal</h1>
 
-<div id="calendar"></div>
-
-<script>
-
-document.addEventListener('DOMContentLoaded', function() {
-
-    const calendarEl = document.getElementById('calendar');
-
-    const calendar = new FullCalendar.Calendar(calendarEl, {
-
-        initialView: 'timeGridWeek',
-
-        events: {{ eventos | tojson }}
-
-    });
-
-    calendar.render();
-
-});
-
-</script>
+<p>Aquí vas a ver los turnos de toda la semana.</p>
 
 </body>
-
 </html>

@@ -1,27 +1,25 @@
-{% extends "base.html" %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Consultas - Barbería</title>
+</head>
 
-{% block content %}
+<body>
+
+<div style="background:red;color:white;padding:10px;">
+MENU TEST
+</div>
 
 <h1>Consultas recibidas</h1>
 
-<a href="/consulta">
-<button>➕ Nueva consulta</button>
-</a>
-
-<br><br>
-
 {% if consultas %}
-
 {% for consulta in consultas %}
 
 <p>{{ consulta[1] }} - {{ consulta[3] }}</p>
 
 {% endfor %}
-
-{% else %}
-
-<p>No hay consultas</p>
-
 {% endif %}
 
-{% endblock %}
+</body>
+</html>

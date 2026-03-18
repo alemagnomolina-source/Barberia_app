@@ -63,7 +63,7 @@ def crear_consulta():
             "mensaje": mensaje
         })
 
-        return redirect(f"https://wa.me/5492302616904?text=Nueva%20consulta%20de%20{nombre}%20-%20{servicio}")
+        return render_template("consulta_enviada.html")
 
     return render_template("nueva_consulta.html")
 

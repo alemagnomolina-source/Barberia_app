@@ -280,7 +280,7 @@ def logout():
     return redirect(url_for("login"))
 
 @app.route("/")
-def inicio():
+def otra_funcion():
     return redirect("/consulta")
 
 # -----------------------

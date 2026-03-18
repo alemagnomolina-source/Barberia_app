@@ -27,9 +27,28 @@
 {% if consultas %}
 {% for consulta in consultas %}
 
-<div style="box-shadow:0 2px 6px rgba(0,0,0,0.1); padding:10px; margin-bottom:10px; border-radius:8px;">
+<div style="box-shadow:0 2px 6px rgba(0,0,0,0.1); padding:12px; margin-bottom:12px; border-radius:8px;">
+
     <p><strong>Nombre:</strong> {{ consulta[1] }}</p>
-    <p><strong>Mensaje:</strong> {{ consulta[3] }}</p>
+    <p><strong>Teléfono:</strong> {{ consulta[2] }}</p>
+    <p><strong>Servicio:</strong> {{ consulta[3] }}</p>
+    <p><strong>Mensaje:</strong> {{ consulta[4] }}</p>
+
+    <br>
+
+    <a href="/asignar_turno/{{consulta[0]}}">
+        <button style="background:#00c853;color:white;border:none;padding:6px 10px;border-radius:5px;">
+            📅 Asignar turno
+        </button>
+    </a>
+
+    <a target="_blank"
+       href="https://wa.me/549{{consulta[2]}}?text=Hola%20{{consulta[1]}},%20recibimos%20tu%20consulta.%20Podemos%20coordinar%20tu%20turno.">
+        <button style="background:#25D366;color:white;border:none;padding:6px 10px;border-radius:5px;">
+            WhatsApp
+        </button>
+    </a>
+
 </div>
 
 {% endfor %}

@@ -3,11 +3,9 @@
 <head>
 
 <meta charset="UTF-8">
-
 <title>Consultas - Barbería</title>
 
 <style>
-
 body{
     font-family: Arial, sans-serif;
 }
@@ -23,12 +21,20 @@ button{
     margin-top:5px;
     padding:6px 10px;
 }
-
 </style>
 
 </head>
 
 <body>
+
+<!-- ✅ MENU ARRIBA -->
+<div style="background:#111;padding:10px;">
+    <a href="/consultas" style="color:white;margin-right:15px;">Consultas</a>
+    <a href="/agenda" style="color:white;margin-right:15px;">Agenda</a>
+    <a href="/agenda_semana" style="color:white;margin-right:15px;">Semana</a>
+    <a href="/estadisticas" style="color:white;margin-right:15px;">Estadísticas</a>
+    <a href="/dashboard" style="color:white;">Dashboard</a>
+</div>
 
 <h1>Consultas recibidas</h1>
 
@@ -63,14 +69,10 @@ Fecha: {{ consulta[5] }}<br>
 </a>
 
 <a target="_blank"
-href="https://wa.me/549{{consulta[2]}}?text=Hola%20{{consulta[1]}},%20recibimos%20tu%20consulta.%20Podemos%20coordinar%20tu%20turno." target="_blank">
-WhatsApp
-</a>
-
+href="https://wa.me/549{{consulta[2]}}?text=Hola%20{{consulta[1]}},%20recibimos%20tu%20consulta.%20Podemos%20coordinar%20tu%20turno.">
 <button style="background:#25D366;color:white;">
 WhatsApp
 </button>
-
 </a>
 
 </div>
@@ -89,17 +91,5 @@ WhatsApp
 <button>📋 Ver agenda del día</button>
 </a>
 
-
-<div style="background:#111;padding:10px;">
-    <a href="/consultas" style="color:white;margin-right:15px;">Consultas</a>
-    <a href="/agenda" style="color:white;margin-right:15px;">Agenda</a>
-    <a href="/agenda_semana" style="color:white;margin-right:15px;">Semana</a>
-    <a href="/estadisticas" style="color:white;margin-right:15px;">Estadísticas</a>
-    <a href="/dashboard" style="color:white;">Dashboard</a>
-</div>
-
-<h1>Consultas recibidas</h1>
-<body>
-
-
+</body>
 </html>

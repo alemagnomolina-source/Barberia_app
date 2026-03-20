@@ -14,21 +14,18 @@ def crear_tabla():
     cursor = conn.cursor()
 
     cursor.execute("""
-    DROP TABLE IF EXISTS consultas
+    CREATE TABLE IF NOT EXISTS consultas (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        nombre TEXT,
+        telefono TEXT,
+        servicio TEXT,
+        mensaje TEXT,
+        fecha TEXT,
+        hora TEXT,
+        estado TEXT DEFAULT 'pendiente',
+        usuario INTEGER
+    )
     """)
-
-    cursor.execute ("""
-    CREATE TABLE consultas
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    nombre TEXT,
-    telefono TEXT,
-    servicio TEXT,
-    mensaje TEXT,
-    fecha TEXT,
-    hora TEXT,
-    estado TEXT,
-    usuario TEXT
-""")
 
     conn.commit()
     conn.close()
@@ -38,13 +35,13 @@ def crear_tabla():
 # INSERTAR CONSULTA
 # -------------------------------
 
-def insertar_consulta(nombre, telefono, servicio, mensaje, usuario):
-    conn = sqlite3.connect("barberia.db")
+def insertar_consulta(nombre, telefono, servicio, mensaje, usuario=1):
+    conn = conectar()
     cursor = conn.cursor()
 
     cursor.execute("""
-        INSERT INTO consultas (nombre, telefono, servicio, mensaje, fecha, estado, usuario)
-        VALUES (?, ?, ?, ?, date('now'), 'nuevo', ?)
+    INSERT INTO consultas (nombre, telefono, servicio, mensaje, estado, usuario)
+    VALUES (?, ?, ?, ?, 'pendiente', ?)
     """, (nombre, telefono, servicio, mensaje, usuario))
 
     conn.commit()
@@ -106,7 +103,7 @@ def obtener_horas_ocupadas(fecha):
     SELECT hora
     FROM consultas
     WHERE fecha = ? AND estado = 'confirmado'
-    """, (fecha,))
+    """",(fecha,))
 
     horas = [h[0] for h in cursor.fetchall()]
 
@@ -218,7 +215,7 @@ def estadisticas_del_dia(fecha):
     conn.close()
 
     stats = {
-        "nuevo": 0,
+        "pendiente": 0,
         "confirmado": 0,
         "atendido": 0,
         "ausente": 0,
@@ -230,6 +227,7 @@ def estadisticas_del_dia(fecha):
         stats["total"] += cantidad
 
     return stats
+
 
 # -------------------------------
 # AGENDA SEMANAL
@@ -254,9 +252,11 @@ def obtener_turnos_semana(inicio, fin):
 
     return data
 
+
 # --------------------------
 # CONSULTA POR ID
 # --------------------------
+
 def obtener_consulta_por_id(consulta_id):
 
     conn = conectar()
@@ -273,6 +273,7 @@ def obtener_consulta_por_id(consulta_id):
     conn.close()
 
     return consulta
+
 
 # -------------------------------
 # SERVICIOS MAS VENDIDOS
@@ -304,6 +305,7 @@ def estadisticas_servicios():
         servicios[servicio] = cantidad
 
     return servicios
+
 
 # --------------------------
 # TEMPORAL

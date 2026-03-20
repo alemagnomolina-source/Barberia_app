@@ -100,10 +100,10 @@ def obtener_horas_ocupadas(fecha):
     cursor = conn.cursor()
 
     cursor.execute("""
-    SELECT hora
-    FROM consultas
-    WHERE fecha = ? AND estado = 'confirmado'
-    """",(fecha,))
+        SELECT hora
+        FROM consultas
+        WHERE fecha = ? AND estado = 'confirmado'
+    """, (fecha,))
 
     horas = [h[0] for h in cursor.fetchall()]
 

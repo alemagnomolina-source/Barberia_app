@@ -54,7 +54,9 @@ def crear_consulta():
         servicio = request.form["servicio"]
         mensaje = request.form["mensaje"]
 
-        insertar_consulta(nombre, telefono, servicio, mensaje)
+        usuario = "admin"  # por ahora fijo
+
+        insertar_consulta(nombre, telefono, servicio, mensaje, usuario)
 
         notificar("consulta_nueva", {
             "nombre": nombre,

@@ -17,19 +17,18 @@ def crear_tabla():
     DROP TABLE IF EXISTS consultas
     """)
 
-    cursor.execute("""
-    CREATE TABLE consultas (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
-        nombre TEXT,
-        telefono TEXT,
-        servicio TEXT,
-        mensaje TEXT,
-        fecha TEXT,
-        hora TEXT,
-        estado TEXT,
-        creado_en TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-    )
-    """)
+    cursor.execute ("""
+    CREATE TABLE consultas
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    nombre TEXT,
+    telefono TEXT,
+    servicio TEXT,
+    mensaje TEXT,
+    fecha TEXT,
+    hora TEXT,
+    estado TEXT,
+    usuario TEXT
+""")
 
     conn.commit()
     conn.close()
@@ -39,15 +38,14 @@ def crear_tabla():
 # INSERTAR CONSULTA
 # -------------------------------
 
-def insertar_consulta(nombre, telefono, servicio, mensaje):
-
-    conn = conectar()
+def insertar_consulta(nombre, telefono, servicio, mensaje, usuario):
+    conn = sqlite3.connect("barberia.db")
     cursor = conn.cursor()
 
     cursor.execute("""
-    INSERT INTO consultas (nombre, telefono, servicio, mensaje, estado)
-    VALUES (?, ?, ?, ?, 'pendiente')
-    """, (nombre, telefono, servicio, mensaje))
+        INSERT INTO consultas (nombre, telefono, servicio, mensaje, fecha, estado, usuario)
+        VALUES (?, ?, ?, ?, date('now'), 'nuevo', ?)
+    """, (nombre, telefono, servicio, mensaje, usuario))
 
     conn.commit()
     conn.close()
